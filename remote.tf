@@ -1,3 +1,8 @@
+provider "aws" {
+    region = "us-east-1"
+#    allowed_account_ids = ["0123456789"]
+}
+
 terraform {
  backend "s3" {
  encrypt = true
