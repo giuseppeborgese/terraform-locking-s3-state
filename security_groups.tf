@@ -1,6 +1,5 @@
-/*
 resource "aws_security_group" "sg" {
-  vpc_id      = "vpc-3901d841"
+  vpc_id      = "vpc-xxxxxx"
   name        = "Testlock"
 }
 
@@ -14,4 +13,3 @@ resource "aws_security_group_rule" "rule" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.sg.id
 }
-*/
