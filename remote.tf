@@ -33,8 +33,11 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
 resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
   name = "terraform-state-lock-dynamo"
   hash_key = "LockID"
-  read_capacity = 20
-  write_capacity = 20
+  
+  # I changed the model because this pay per request is more efficient for this purpose
+  billing_mode = "PAY_PER_REQUEST"
+  #read_capacity = 20
+  #write_capacity = 20
 
   attribute {
     name = "LockID"
