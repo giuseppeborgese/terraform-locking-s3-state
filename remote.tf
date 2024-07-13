@@ -17,10 +17,6 @@ terraform {
 resource "aws_s3_bucket" "terraform-state-storage-s3" {
     bucket = "terraform-remote-state-storage-s3-for-youtube"
 
-    versioning {
-      enabled = true
-    }
-
     lifecycle {
       prevent_destroy = true
     }
@@ -30,6 +26,13 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
     }
 }
 
+
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.terraform-state-storage-s3.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
   name = "terraform-state-lock-dynamo"
   hash_key = "LockID"
